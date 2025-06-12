@@ -1,4 +1,4 @@
-const API_KEY = "DEIN_API_KEY_HIER"; // Hole dir einen Key unter https://openweathermap.org/api
+const API_KEY = "fac83fd1b242898cb188cc3d4c45123e"; 
 
 const form = document.getElementById("weatherForm");
 const cityInput = document.getElementById("cityInput");

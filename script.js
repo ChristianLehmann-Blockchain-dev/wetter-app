@@ -16,7 +16,7 @@ function getWeather() {
     .then(res => res.json())
     .then(data => {
       if (data.cod !== 200) {
-        document.getElementById("weatherResult").textContent = "Stadt nicht gefunden.";
+        document.getElementById("weatherResult").textContent = `Fehler: ${data.message}`;
         return;
       }
 
@@ -32,10 +32,12 @@ function getWeather() {
 
       showMap(coord.lat, coord.lon);
     })
-    .catch(() => {
+    .catch(error => {
+      console.error("Fetch Fehler:", error);
       document.getElementById("weatherResult").textContent = "Fehler beim Laden der Wetterdaten.";
     });
 }
+
 
 function showMap(lat, lon) {
   if (!map) {

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wetter App</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>🌦️ Wetter App</h1>
+    <form id="weatherForm">
+      <input type="text" id="cityInput" placeholder="Stadt eingeben..." required />
+      <button type="submit">Suche</button>
+    </form>
+    <div id="weatherResult" class="hidden">
+      <h2 id="cityName"></h2>
+      <p id="description"></p>
+      <img id="icon" alt="Wetter Icon" />
+      <p><span id="temp"></span>°C</p>
+    </div>
+    <p id="error" class="error hidden"></p>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

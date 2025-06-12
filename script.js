@@ -1,41 +1,41 @@
-const API_KEY = "fac83fd1b242898cb188cc3d4c45123e"; 
+const apiKey = "fac83fd1b242898cb188cc3d4c45123e";
 
-const form = document.getElementById("weatherForm");
-const cityInput = document.getElementById("cityInput");
-const weatherResult = document.getElementById("weatherResult");
-const cityName = document.getElementById("cityName");
-const description = document.getElementById("description");
-const icon = document.getElementById("icon");
-const temp = document.getElementById("temp");
-const error = document.getElementById("error");
+let map;
 
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const city = cityInput.value.trim();
+function getWeather() {
+  const city = document.getElementById("cityInput").value.trim();
   if (!city) return;
 
-  weatherResult.classList.add("hidden");
-  error.classList.add("hidden");
+  fetch(apiKey.replace("{CITY}", city))
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.cod !== 200) {
+        document.getElementById("weatherResult").textContent = "Stadt nicht gefunden.";
+        return;
+      }
 
-  try {
-    const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&lang=de&appid=${API_KEY}`
-    );
+      const { name, main, weather, coord } = data;
+      document.getElementById("weatherResult").innerHTML = `
+        <h2>${name}</h2>
+        <p>${weather[0].description}</p>
+        <p>🌡️ ${main.temp} °C</p>
+      `;
 
-    if (!response.ok) throw new Error("Stadt nicht gefunden.");
+      showMap(coord.lat, coord.lon);
+    })
+    .catch(() => {
+      document.getElementById("weatherResult").textContent = "Fehler beim Laden.";
+    });
+}
 
-    const data = await response.json();
-
-    cityName.textContent = data.name;
-    description.textContent = data.weather[0].description;
-    icon.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
-    temp.textContent = Math.round(data.main.temp);
-
-    weatherResult.classList.remove("hidden");
-  } catch (err) {
-    error.textContent = err.message;
-    error.classList.remove("hidden");
+function showMap(lat, lon) {
+  if (!map) {
+    map = L.map("map").setView([lat, lon], 10);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: "© OpenStreetMap",
+    }).addTo(map);
+  } else {
+    map.setView([lat, lon], 10);
+    L.marker([lat, lon]).addTo(map);
   }
-
-  cityInput.value = "";
-});
+}

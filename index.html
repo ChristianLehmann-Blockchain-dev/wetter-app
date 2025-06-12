@@ -2,25 +2,32 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wetter App</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Wetter App mit Karte</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      margin: 20px;
+    }
+    #map {
+      height: 300px;
+      margin-top: 20px;
+    }
+    input, button {
+      padding: 8px;
+      font-size: 1rem;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <h1>🌦️ Wetter App</h1>
-    <form id="weatherForm">
-      <input type="text" id="cityInput" placeholder="Stadt eingeben..." required />
-      <button type="submit">Suche</button>
-    </form>
-    <div id="weatherResult" class="hidden">
-      <h2 id="cityName"></h2>
-      <p id="description"></p>
-      <img id="icon" alt="Wetter Icon" />
-      <p><span id="temp"></span>°C</p>
-    </div>
-    <p id="error" class="error hidden"></p>
-  </div>
+  <h1>🌦️ Wetter App mit Karte</h1>
+  <input id="cityInput" type="text" placeholder="Stadt eingeben" />
+  <button onclick="getWeather()">Wetter holen</button>
+  <div id="weatherResult"></div>
+  <div id="map"></div>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

@@ -3,39 +3,107 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Wetter App</title>
+  <title>Wetter App mit Karte</title>
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+    integrity="sha256-sA+e2i6B1u44K1qaJh6uVVtCjoX6lo8vN1MXrN/h2jI="
+    crossorigin=""
+  />
   <style>
     body {
-      font-family: Arial, sans-serif;
-      max-width: 400px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 500px;
       margin: 2rem auto;
       padding: 1rem;
-      background: #eef6fd;
-      border-radius: 8px;
-      box-shadow: 0 0 10px #ccc;
+      background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
+      color: #222;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 1rem;
+      color: #0a3d62;
+      text-shadow: 1px 1px 4px #d1d8e0;
     }
     input, button {
-      padding: 0.5rem;
-      font-size: 1rem;
+      font-size: 1.1rem;
+      padding: 0.6rem;
+      border-radius: 8px;
+      border: none;
       width: 100%;
+      box-sizing: border-box;
       margin-top: 0.5rem;
+      transition: box-shadow 0.3s ease;
+    }
+    input:focus, button:hover {
+      box-shadow: 0 0 8px #60a3bc;
+      outline: none;
+    }
+    button {
+      background-color: #60a3bc;
+      color: white;
+      cursor: pointer;
+      font-weight: 600;
+      user-select: none;
     }
     #weatherResult {
       margin-top: 1rem;
-      background: #fff;
-      padding: 1rem;
-      border-radius: 6px;
-      box-shadow: 0 0 5px #bbb;
+      background: rgba(255 255 255 / 0.85);
+      padding: 1rem 1.2rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+      animation: fadeIn 0.5s ease forwards;
+    }
+    #weatherResult h2 {
+      margin: 0 0 0.3rem;
+      color: #3867d6;
+    }
+    #weatherResult p {
+      margin: 0.3rem 0;
+      font-size: 1.1rem;
+      text-transform: capitalize;
+    }
+
+    /* Karte */
+    #map {
+      height: 300px;
+      margin-top: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      animation: fadeIn 0.8s ease forwards;
+    }
+
+    /* einfache fadeIn Animation */
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    /* Responsive */
+    @media (max-width: 500px) {
+      body {
+        margin: 1rem;
+        max-width: 100%;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>Wetter App</h1>
-  <input type="text" id="cityInput" placeholder="Stadt eingeben" />
+  <h1>Wetter App mit Karte</h1>
+
+  <input type="text" id="cityInput" placeholder="Stadt eingeben" autocomplete="off" />
   <button id="searchBtn">Wetter anzeigen</button>
 
   <div id="weatherResult">Bitte Stadt eingeben und suchen.</div>
+  <div id="map"></div>
 
+  <script
+    src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+    integrity="sha256-WG1luoU70qN6LF6p4RVHceWmvQO1wEWyxJWIm+qU5U8="
+    crossorigin=""
+  ></script>
   <script src="script.js"></script>
 </body>
 </html>

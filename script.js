@@ -1,4 +1,4 @@
-const apiKey = "fac83fd1b242898cb188cc3d4c45123e";
+const apiKey = "https://api.openweathermap.org/data/2.5/weather?q={CITY}&appid=fac83fd1b242898cb188cc3d4c45123e&units=metric&lang=de";
 
 let map;
 let marker;

@@ -2,31 +2,84 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Wetter App mit Karte</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <style>
     body {
-      font-family: sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 0 10px;
       text-align: center;
-      margin: 20px;
+      background: #f0f4f8;
+      color: #333;
     }
-    #map {
-      height: 300px;
-      margin-top: 20px;
+
+    h1 {
+      margin-bottom: 1rem;
     }
-    input, button {
-      padding: 8px;
+
+    #inputContainer {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 15px;
+    }
+
+    input#cityInput {
+      flex: 1 1 200px;
+      padding: 10px;
       font-size: 1rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      border: none;
+      background-color: #0078d4;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #005a9e;
+    }
+
+    #weatherResult {
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+      margin-bottom: 20px;
+      min-height: 80px;
+    }
+
+    #map {
+      height: 350px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+      margin-bottom: 30px;
     }
   </style>
 </head>
 <body>
   <h1>🌦️ Wetter App mit Karte</h1>
-  <input id="cityInput" type="text" placeholder="Stadt eingeben" />
-  <button onclick="getWeather()">Wetter holen</button>
+
+  <div id="inputContainer">
+    <input id="cityInput" type="text" placeholder="Stadt eingeben" />
+    <button onclick="getWeather()">Wetter holen</button>
+  </div>
+
   <div id="weatherResult"></div>
   <div id="map"></div>
+
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script src="script.js"></script>
 </body>

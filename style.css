@@ -1,42 +1,86 @@
-body {
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(to top right, #6dd5ed, #2193b0);
-  color: #fff;
-  text-align: center;
-  margin: 0;
-  padding: 2rem;
-}
-.container {
-  max-width: 400px;
-  margin: auto;
-  padding: 2rem;
-  background-color: rgba(0, 0, 0, 0.3);
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-input {
-  padding: 0.7rem;
-  width: 70%;
-  border: none;
-  border-radius: 10px;
-  margin-right: 0.5rem;
-}
-button {
-  padding: 0.7rem 1rem;
-  border: none;
-  border-radius: 10px;
-  background-color: #ffcc70;
-  color: #333;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-button:hover {
-  background-color: #ffaa00;
-}
-.hidden {
-  display: none;
-}
-.error {
-  color: #ff8080;
-  margin-top: 1rem;
-}
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Wetter App mit Karte</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 0 10px;
+      text-align: center;
+      background: #f0f4f8;
+      color: #333;
+    }
+
+    h1 {
+      margin-bottom: 1rem;
+    }
+
+    #inputContainer {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 15px;
+    }
+
+    input#cityInput {
+      flex: 1 1 200px;
+      padding: 10px;
+      font-size: 1rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      border: none;
+      background-color: #0078d4;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #005a9e;
+    }
+
+    #weatherResult {
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+      margin-bottom: 20px;
+      min-height: 80px;
+    }
+
+    #map {
+      height: 350px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+      margin-bottom: 30px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🌦️ Wetter App mit Karte</h1>
+
+  <div id="inputContainer">
+    <input id="cityInput" type="text" placeholder="Stadt eingeben" />
+    <button onclick="getWeather()">Wetter holen</button>
+  </div>
+
+  <div id="weatherResult"></div>
+  <div id="map"></div>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
